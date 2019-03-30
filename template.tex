@@ -12,6 +12,7 @@
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 \usepackage{lipsum}
+\usepackage{todonotes}
 
 \title{Emonitoring the Growth of Mangroves using Camera Images}
 
@@ -52,7 +53,7 @@
 \maketitle
 
 \begin{abstract}
-\lipsum[1]
+To be filled.
 \end{abstract}
 
 
@@ -61,8 +62,7 @@
 
 
 \section{Introduction}
-\lipsum[2]
-\lipsum[3]
+To be filled. 
 
 
 \section{Methods and Materials}
@@ -70,7 +70,7 @@
 
 
 \subsection{Data}
-On the mangrove forest observation tower, a digital camera was installed in a fixed position, leveled with the horizon, with a view across the top of the canopy. This TLCAM PRO camera provided JPG images at 30-min intervals for 24h per day. Each image has three color channels of 8-bit RGB color information and for each channel digital numbers (DN) ranging from 0 to 255. Cameras were operated in the automatic aperture and exposure mode. The timestamps of all images were extracted from the Exif information stored along with the images. The Exif data stores the basic information about the image, including image gamut space, capture time and save time.We save all the capture times to a timestamp dictionary for fast query. In total, we captured 15,629 images in the period from xxxx to xxx.  Figure 1 shows two image examples and the extracted timestamps.
+On the mangrove forest observation tower, a digital camera was installed in a fixed position, leveled with the horizon, with a view across the top of the canopy. This TLCAM PRO camera provided JPG images at 30-min intervals for 24h per day. Each image has three color channels of 8-bit RGB color information and for each channel digital numbers (DN) ranging from 0 to 255. Cameras were operated in the automatic aperture and exposure mode. The timestamps of all images were extracted from the Exif information stored along with the images. The Exif data stores the basic information about the image, including image gamut space, capture time and save time.We save all the capture times to a timestamp dictionary for fast query. In total, we captured 15,629 images in the period from xxxx to xxx.\todo{Update Later}  \color[red]{Figure 1 shows two image examples and the extracted timestamps.}
 
 ++ Figure 1 
 ++ Study Area
@@ -78,19 +78,23 @@ On the mangrove forest observation tower, a digital camera was installed in a fi
 
 \begin{equation}
 \xi _{ij}(t)=P(x_{t}=i,x_{t+1}=j|y,v,w;\theta)= {\frac {\alpha _{i}(t)a^{w_t}_{ij}\beta _{j}(t+1)b^{v_{t+1}}_{j}(y_{t+1})}{\sum _{i=1}^{N} \sum _{j=1}^{N} \alpha _{i}(t)a^{w_t}_{ij}\beta _{j}(t+1)b^{v_{t+1}}_{j}(y_{t+1})}}
-\end{equation}
+\end{equation}\todo{Example to add an equation. Search for "Latex, formula format" for more information}
 
 \subsubsection{Data Quality Control}
 ++ Quality control before and during implementation. Keep the FOV constant. Automatic aperture and exposure mode. 
-Time series were first visually inspected for camera shifts and the related changes in field of view (FOV). The FOV remained largely unchanged, however, some larger shifts in the FOV were observed as the positioning of the camera changed a few times throughout the study. We also observed images with unusual illumination which may affect the calculation of vegetation indices. For example, images before sun rise and after sun set had inadequate illumination and so can hardly be used for monitoring the greenness. Also, images around the sunrise and sunset had significant different hues. 
+
+\paragraph{Camera Shifts.} Time series were first visually inspected for camera shifts and the related changes in field of view (FOV). The FOV remained largely unchanged, however, some larger shifts in the FOV were observed as the positioning of the camera changed a few times throughout the study. 
+
+\paragraph{Poor Illumination.} We also observed images with unusual illumination which may affect the calculation of vegetation indices. For example, images before sun rise and after sun set had inadequate illumination and so can hardly be used for monitoring the greenness. Also, images around the sunrise and sunset had significant different hues. 
+
 To wipe out the bad images significantly affected by camera shifting or unusual illumination, we calculated the percentage of green color in each image as an indicator for filtering and calibration. The percentage of green color was computed as the percentage of image pixels where the DN(g) was smaller than 175 (see Figure S1 for more details++ histogram in Supporting Information). After applying the greenness proportion calculation to one month’s images, we found that the proportions are segmented to two parts. Irregular images suffering from bad illumination or camera shifting problems had values being extremely close to 1, while the normal ones were normally distributed around 0.6. Therefore, we selected a benchmark of 0.75 to sift out the normal images to be used in further calculations (++ histogram in Supporting Information). Using this filter, we identified and removed XXX images  from the original dataset. Rechecking the identified bad images, we found that they are all ill-illuminated and had a time span from 6pm to the second day’s 6am.
-Moreover, at the bottom of each image, a black bar is attached to display the time, temperature and equipment manufactory, which largely disturbed our calculation of vegetation indices. Noting these noises, images were first cropped to exclude the bars. The way to solve the field of view shifts is discussed in later sections.
-All image processing were conducted using Python 3.6. 
+
+Moreover, at the bottom of each image, a black bar is attached to display the time, temperature and equipment manufactory, which largely disturbed our calculation of vegetation indices. Noting these noises, images were first cropped to exclude the bars. The way to solve the field of view shifts is discussed in later sections. All image processing were conducted using Python 3.6. 
 
 
 
 
-\paragraph{Paragraph}
+
 
 
 \subsection{Calculation of Vegetation Indices}

@@ -1,255 +1,399 @@
-\NeedsTeXFormat{LaTeX2e}
+\documentclass{article}
 
-\ProcessOptions\relax
 
-% fonts
-\renewcommand{\rmdefault}{ptm}
-\renewcommand{\sfdefault}{phv}
+\usepackage{arxiv}
 
-% set page geometry
-\usepackage[verbose=true,letterpaper]{geometry}
-\AtBeginDocument{
-  \newgeometry{
-    textheight=9in,
-    textwidth=6.5in,
-    top=1in,
-    headheight=14pt,
-    headsep=25pt,
-    footskip=30pt
-  }
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{todonotes}
+
+\title{Monitoring the Growth of Mangroves using Camera Images}
+
+
+\author{
+  Q. Xiang\thanks{Use footnote for providing further
+    information about author (webpage, alternative
+    address)---\emph{not} for acknowledging funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  %% examples of more authors
+   \And
+ Elias D.~Striatum \\
+  Department of Electrical Engineering\\
+  Mount-Sheikh University\\
+  Santa Narimana, Levand \\
+  \texttt{stariate@ee.mount-sheikh.edu} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
 }
 
-\widowpenalty=10000
-\clubpenalty=10000
-\flushbottom
-\sloppy
+\begin{document}
+\maketitle
 
-\usepackage{fancyhdr}
-\fancyhf{}
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-\fancyheadoffset{0pt}
-\rhead{\scshape A preprint - \today}
-\cfoot{\thepage}
+\begin{abstract}
+
+Comment 0518:
+\begin{enumerate}
+    \item Good work, you have got the results in Feb and Jul. Make sure you have all data in order. 
+    \item I made detailed comments in the Results section. Please revise accordingly ASAP and let me know. Several Figures and Tables need to be remade. 
+    \item Generally, write concisely. I revised some sentences as an example. 
+    \item Pay attention to include just the right amount of /} otherwise the file will collapse.
+    \item If you don't know how to include tables, look here: \url{https://www.tablesgenerator.com/}
+\end{enumerate}
+
+\end{abstract}
 
 
-%Handling Keywords
-\def\keywordname{{\bfseries \emph Keywords}}%
-\def\keywords#1{\par\addvspace\medskipamount{\rightskip=0pt plus1cm
-\def\and{\ifhmode\unskip\nobreak\fi\ $\cdot$
-}\noindent\keywordname\enspace\ignorespaces#1\par}}
 
-% font sizes with reduced leading
-\renewcommand{\normalsize}{%
-  \@setfontsize\normalsize\@xpt\@xipt
-  \abovedisplayskip      7\p@ \@plus 2\p@ \@minus 5\p@
-  \abovedisplayshortskip \z@ \@plus 3\p@
-  \belowdisplayskip      \abovedisplayskip
-  \belowdisplayshortskip 4\p@ \@plus 3\p@ \@minus 3\p@
-}
-\normalsize
-\renewcommand{\small}{%
-  \@setfontsize\small\@ixpt\@xpt
-  \abovedisplayskip      6\p@ \@plus 1.5\p@ \@minus 4\p@
-  \abovedisplayshortskip \z@  \@plus 2\p@
-  \belowdisplayskip      \abovedisplayskip
-  \belowdisplayshortskip 3\p@ \@plus 2\p@   \@minus 2\p@
-}
-\renewcommand{\footnotesize}{\@setfontsize\footnotesize\@ixpt\@xpt}
-\renewcommand{\scriptsize}{\@setfontsize\scriptsize\@viipt\@viiipt}
-\renewcommand{\tiny}{\@setfontsize\tiny\@vipt\@viipt}
-\renewcommand{\large}{\@setfontsize\large\@xiipt{14}}
-\renewcommand{\Large}{\@setfontsize\Large\@xivpt{16}}
-\renewcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{20}}
-\renewcommand{\huge}{\@setfontsize\huge\@xxpt{23}}
-\renewcommand{\Huge}{\@setfontsize\Huge\@xxvpt{28}}
+%% How To search for help: LATEX, bold font 
 
-% sections with less space
-\providecommand{\section}{}
-\renewcommand{\section}{%
-  \@startsection{section}{1}{\z@}%
-                {-2.0ex \@plus -0.5ex \@minus -0.2ex}%
-                { 1.5ex \@plus  0.3ex \@minus  0.2ex}%
-                {\large\bf\raggedright}%
-}
-\providecommand{\subsection}{}
-\renewcommand{\subsection}{%
-  \@startsection{subsection}{2}{\z@}%
-                {-1.8ex \@plus -0.5ex \@minus -0.2ex}%
-                { 0.8ex \@plus  0.2ex}%
-                {\normalsize\bf\raggedright}%
-}
-\providecommand{\subsubsection}{}
-\renewcommand{\subsubsection}{%
-  \@startsection{subsubsection}{3}{\z@}%
-                {-1.5ex \@plus -0.5ex \@minus -0.2ex}%
-                { 0.5ex \@plus  0.2ex}%
-                {\normalsize\bf\raggedright}%
-}
-\providecommand{\paragraph}{}
-\renewcommand{\paragraph}{%
-  \@startsection{paragraph}{4}{\z@}%
-                {1.5ex \@plus 0.5ex \@minus 0.2ex}%
-                {-1em}%
-                {\normalsize\bf}%
-}
-\providecommand{\subparagraph}{}
-\renewcommand{\subparagraph}{%
-  \@startsection{subparagraph}{5}{\z@}%
-                {1.5ex \@plus 0.5ex \@minus 0.2ex}%
-                {-1em}%
-                {\normalsize\bf}%
-}
-\providecommand{\subsubsubsection}{}
-\renewcommand{\subsubsubsection}{%
-  \vskip5pt{\noindent\normalsize\rm\raggedright}%
-}
 
-% float placement
-\renewcommand{\topfraction      }{0.85}
-\renewcommand{\bottomfraction   }{0.4}
-\renewcommand{\textfraction     }{0.1}
-\renewcommand{\floatpagefraction}{0.7}
+% keywords can be removed
+\keywords{First keyword \and Second keyword \and More}
 
-\newlength{\@abovecaptionskip}\setlength{\@abovecaptionskip}{7\p@}
-\newlength{\@belowcaptionskip}\setlength{\@belowcaptionskip}{\z@}
 
-\setlength{\abovecaptionskip}{\@abovecaptionskip}
-\setlength{\belowcaptionskip}{\@belowcaptionskip}
+\section{Introduction}
 
-% swap above/belowcaptionskip lengths for tables
-\renewenvironment{table}
-  {\setlength{\abovecaptionskip}{\@belowcaptionskip}%
-   \setlength{\belowcaptionskip}{\@abovecaptionskip}%
-   \@float{table}}
-  {\end@float}
+Mangrove is a specific type of tropic or subtropic tree species which has strong
+reproductive adaptations that allows them to colonize and develop in saline, hypoxic
+environments.Vegetation phenology has been a focus of attention in recent years due
+to a measurable link between biological events and climate.The earth is expected to
+warm up by 5\°C on average in the next 100 years.Around 60\% of the increase was
+due to carbon emissions.Mangrove takes only 0.3\% of the earth’s surface.But if there
+were no mangrove forests, the CO2 concentration will be 2.5 times higher than it
+is.As a result, monitoring mangrove phenology and find the pattern in its growing
+cycle play crucial roles in optimizing mangrove’s carbon reducing function.The
+greenness of vegetation in a certain area is a sound indicator of the vegetation
+phenology.
 
-% footnote formatting
-\setlength{\footnotesep }{6.65\p@}
-\setlength{\skip\footins}{9\p@ \@plus 4\p@ \@minus 2\p@}
-\renewcommand{\footnoterule}{\kern-3\p@ \hrule width 12pc \kern 2.6\p@}
-\setcounter{footnote}{0}
+Historically, vegetation phenology was based on field records of key biological
+events such as budburst, flowering, seed set and leaf senescence (Fitter and Fitter,
+2002),which can not generate accurate data for computing. Landsat data, or remote
+sensing measurements, are another source which can produce specific images of the
+forests from the space.They can strongly indicate daily or annual GPP in small and
+homogeneous regions.However they are not suitable for large areas and are easily
+disturbed by bad or cloudy weathers.
 
-% paragraph formatting
-\setlength{\parindent}{\z@}
-\setlength{\parskip  }{5.5\p@}
+Recently, a network of fine-resolution digital cameras installed in the field known as
+“phenocams”, emerged as a new method to monitor vegetation phenology
+(Richardson et al., 2007). While this method is limited by its relatively small spatial
+extent across the globe and demanding location of the cameras, it largely reduces the
+subjectivity of human observations.What’s more, digital camera method can be used
+in other researches and save a lot of money if the indices are representative for one
+type of environment.
 
-% list formatting
-\setlength{\topsep       }{4\p@ \@plus 1\p@   \@minus 2\p@}
-\setlength{\partopsep    }{1\p@ \@plus 0.5\p@ \@minus 0.5\p@}
-\setlength{\itemsep      }{2\p@ \@plus 1\p@   \@minus 0.5\p@}
-\setlength{\parsep       }{2\p@ \@plus 1\p@   \@minus 0.5\p@}
-\setlength{\leftmargin   }{3pc}
-\setlength{\leftmargini  }{\leftmargin}
-\setlength{\leftmarginii }{2em}
-\setlength{\leftmarginiii}{1.5em}
-\setlength{\leftmarginiv }{1.0em}
-\setlength{\leftmarginv  }{0.5em}
-\def\@listi  {\leftmargin\leftmargini}
-\def\@listii {\leftmargin\leftmarginii
-              \labelwidth\leftmarginii
-              \advance\labelwidth-\labelsep
-              \topsep  2\p@ \@plus 1\p@    \@minus 0.5\p@
-              \parsep  1\p@ \@plus 0.5\p@ \@minus 0.5\p@
-              \itemsep \parsep}
-\def\@listiii{\leftmargin\leftmarginiii
-              \labelwidth\leftmarginiii
-              \advance\labelwidth-\labelsep
-              \topsep    1\p@ \@plus 0.5\p@ \@minus 0.5\p@
-              \parsep    \z@
-              \partopsep 0.5\p@ \@plus 0\p@ \@minus 0.5\p@
-              \itemsep \topsep}
-\def\@listiv {\leftmargin\leftmarginiv
-              \labelwidth\leftmarginiv
-              \advance\labelwidth-\labelsep}
-\def\@listv  {\leftmargin\leftmarginv
-              \labelwidth\leftmarginv
-              \advance\labelwidth-\labelsep}
-\def\@listvi {\leftmargin\leftmarginvi
-              \labelwidth\leftmarginvi
-              \advance\labelwidth-\labelsep}
+This study proposes the analysis of the mangrove status against field measurements
+of carbon flux using digital repeat photography.
 
-% create title
-\providecommand{\maketitle}{}
-\renewcommand{\maketitle}{%
-  \par
-  \begingroup
-    \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-    % for perfect author name centering
-    \renewcommand{\@makefnmark}{\hbox to \z@{$^{\@thefnmark}$\hss}}
-    % The footnote-mark was overlapping the footnote-text,
-    % added the following to fix this problem               (MK)
-    \long\def\@makefntext##1{%
-      \parindent 1em\noindent
-      \hbox to 1.8em{\hss $\m@th ^{\@thefnmark}$}##1
-    }
-    \thispagestyle{empty}
-    \@maketitle
-    \@thanks
-    %\@notice
-  \endgroup
-  \let\maketitle\relax
-  \let\thanks\relax
-}
 
-% rules for title box at top of first page
-\newcommand{\@toptitlebar}{
-  \hrule height 2\p@
-  \vskip 0.25in
-  \vskip -\parskip%
-}
-\newcommand{\@bottomtitlebar}{
-  \vskip 0.29in
-  \vskip -\parskip
-  \hrule height 2\p@
-  \vskip 0.09in%
-}
+\section{Methods and Materials}
+\label{sec:headings}
 
-% create title (includes both anonymized and non-anonymized versions)
-\providecommand{\@maketitle}{}
-\renewcommand{\@maketitle}{%
-  \vbox{%
-    \hsize\textwidth
-    \linewidth\hsize
-    \vskip 0.1in
-    \@toptitlebar
-    \centering
-    {\LARGE\sc \@title\par}
-    \@bottomtitlebar
-    \textsc{A Preprint}\\
-    \vskip 0.1in
-    \def\And{%
-      \end{tabular}\hfil\linebreak[0]\hfil%
-      \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\ignorespaces%
-    }
-    \def\AND{%
-      \end{tabular}\hfil\linebreak[4]\hfil%
-      \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\ignorespaces%
-    }
-    \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\@author\end{tabular}%
-  \vskip 0.4in \@minus 0.1in \center{\today}   \vskip 0.2in
-  }
-}
+\subsection{Experimental Design}
 
-% add conference notice to bottom of first page
-\newcommand{\ftype@noticebox}{8}
-\newcommand{\@notice}{%
-  % give a bit of extra room back to authors on first page
-  \enlargethispage{2\baselineskip}%
-  \@float{noticebox}[b]%
-    \footnotesize\@noticestring%
-  \end@float%
-}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.4\textwidth]{pictures/time.png}
+  \label{fig:fig4}
+\end{figure}
 
-% abstract styling
-\renewenvironment{abstract}
-{
-  \centerline
-  {\large \bfseries \scshape Abstract}
-  \begin{quote}
-}
-{
-  \end{quote}
-}
+\subsection{Data}
+On the mangrove forest observation tower, a digital camera was installed in a fixed position, leveled with the horizon, with a view across the top of the canopy. This TLCAM PRO camera provided JPG images at 30-min intervals for 24h per day. Each image has three color channels of 8-bit RGB color information and for each channel digital numbers (DN) ranging from 0 to 255. Cameras were operated in the automatic aperture and exposure mode. The timestamps of all images were extracted from the Exif information stored along with the images. The Exif data stores the basic information about the image, including image gamut space, capture time and save time.We save all the capture times to a timestamp dictionary for fast query. In total, we captured 1045 images in the period from Feburary,2017 and July,2017. Figure \ref{fig:fig1} shows two image examples and the extracted timestamps.
 
-\endinput
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/WSCT4349.jpg}
+  \includegraphics[width=1\textwidth]{pictures/WSCT4681.jpg}
+  \caption{Image Examples}
+   \includegraphics[width=0.4\textwidth]{pictures/time.png}
+   \caption{Extracted Timestamps}
+  \label{fig:fig1}
+
+\end{figure}
+++ Study Area
+
+
+
+\subsubsection{Data Quality Control}
+\paragraph{Quality control before and during implementation.}
+We ensured that all the images were captured by the same camera on the observation tower.The camera's position and direction were supposed to remain constant all the time during the whole period.We turned automatic aperture and exposure mode on in order to guarantee that among all the images, the illumination conditions stay consistent.
+
+
+\paragraph{Camera Shifts.}Time series were first visually inspected for camera shifts and the related changes in field of view (FOV). The FOV remained largely unchanged. However, some larger shifts in the FOV were observed as the positioning of the camera changed a few times throughout the study. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/0.75benchmark.png}
+  \caption{0.75 benchmark}
+  \label{fig:fig7}
+\end{figure}
+
+\paragraph{Poor Illumination.}We also observed images with unusual illumination which may affect the calculation of vegetation indices. For example, images before sun rise and after sun set had inadequate illumination and so can hardly be used for monitoring the greenness. Also, images around the sunrise and sunset had significant different hues. 
+
+
+    To wipe out the bad images significantly affected by camera shifting or unusual illumination, we calculated the percentage of green color in each image as an indicator for filtering and calibration. The percentage of green color was computed as the percentage of image pixels where the {$DN_g$}was smaller than 175. After applying the greenness proportion calculation to one month’s images, we found that the proportions are segmented to two parts. Irregular images suffering from bad illumination or camera shifting problems had values being extremely close to 1, while the normal ones were normally distributed around 0.6. Therefore, we selected a benchmark of 0.75 to sift out the normal images to be used in further calculations.(See Figure \ref{fig:fig7}) Using this filter, we identified and removed XXX images from the original dataset. Rechecking the identified bad images, we found that they are all ill-illuminated and had a time span from 6pm to the second day’s 6am. See Figure \ref{fig:fig1}.
+
+
+Moreover, at the bottom of each image, a black bar is attached to display the time, temperature and equipment manufactory, which largely disturbed our calculation of vegetation indices. Noting these noises, images were first cropped to exclude the bars. The way to solve the field of view shifts is discussed in later sections. All image processing were conducted using Python 3.6. 
+
+
+\subsection{Calculation of Vegetation Indices}
+To quantify canopy greenness, we calculated the green chromatic coordinate (GCC), which is widely used to monitor canopy development and is strongly related to GPP (xxxx cite), can be denoted as follows,
+
+\begin{equation}
+GCC = \frac{DN_g}{{DN_r + DN_g + DN_b}}
+\end{equation}
+
+where the subscripts R, G, and B indicate the red, green, and blue channels, respectively. 
+We also computed another vegetation index, the excess green (EXGCC) index, which can be denoted as follows, 
+
+\begin{equation}
+EXGCC=2DN(g)-(DN(r)+DN(b)) 
+\end{equation}
+
+EXGCC can be less noisy than GCC in some ecosystems, notably in conifer canopies (xxx cite), although GCC is generally more effective than EXGCC in suppressing the effects of changes in scene illumination (xxx cite). Due to the formulas, all the GCCs which are larger than 1 is dropped. All the EXGCCs which are greater than 200 are modified to 200. 
+
+
+\subsection{Time-Series Smoothing}
+Knowing the vegetation indices are sensitive to illumination conditions, we extracted the images ranging from 10am to 2pm during the day to avoid hue changes due to sunset and to have the most stable illumination. We applied a moving window smoothing to the extracted VIs to highlight the underlying monthly and seasonal change patterns by removing several extremities and unexpected fluctuations that appeared in the extracted time series of GCC and EXGCC caused by factors such as slight illumination disturbance, droplets on lens, and cloud. Several smoothing methods including the mean filter, median filter, and 90\% percentile filter were applied for comparison.For the in_situ NDVI datas we would later resort to for validation, we also applied the same three days moving window smoothingto the NDVIs,as showed in Figure.Following the practice of xxxx (cite), the window size was selected as 3 days. 
+
+
+\subsection{Validation Methods}
+We validate the GCC values extracted (GCCe) from camera photos with field-measurements (GCCf) using the Pearson Correlation Coefficient, and RMSE.    
+
+Pearson Correlation Coefficient: np.corrcoef()
+RMSE: 1/ establish a linear transformation from GCCe to GCCf. 2/ estimate the RMSE between GCCe-estimate and GCCf. y = kx + b, RMSE = sigma(yi - yi-hat)**2/N
+
+Exposure Time.  - RMSE 1/ establish a model to predict GCCf with GCCe and Exposure Time. 2/Measure the R2 and RMSE. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/FebRawGCC.png}
+  \caption{Extracted GCC of mangroves in Feburary,2017}
+  \includegraphics[width=1\textwidth]{pictures/FebRawExGCC.png}
+  \caption{Extracted ExGCC of mangroves in Feburary,2017}
+  \label{fig:fig9}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/JulyRawGCC.png}
+  \caption{Extracted GCC of mangroves in July,2017}
+  \includegraphics[width=1\textwidth]{pictures/JulyRawExGCC.png}
+  \caption{Extracted ExGCC of mangroves in July,2017}
+  \label{fig:fig10}
+\end{figure}
+
+\section{Results}
+
+% Figure Requirements: DPI=300
+
+\subsection{Extracted Vegetation Indices of Mangroves}
+We extracted the GCC and ExGCC of mangroves from camera images for the entire month of February (Figure \ref{fig:fig9}) and July, 2017 (Figure \ref{fig:fig10}). Table 1 shows the descriptive statistics of the extracted GCC and ExGCC.
+
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+      & Feb GCC  & Feb ExGCC & July GCC & July ExGCC \\ \hline
+Count & 26       & 143       & 117      & 260        \\ \hline
+Mean  & 0.359896 & 19.623518 & 0.360759 & 34.630328  \\ \hline
+Std   & 0.00717  & 6.715486  & 0.009370 & 8.943239   \\ \hline
+Min   & 0.342645 & 4.864916  & 0.342365 & 10.675794  \\ \hline
+25\%  & 0.356854 & 14.673109 & 0.354089 & 28.158904  \\ \hline
+50\%  & 0.360481 & 19.603771 & 0.358660 & 36.313891  \\ \hline
+75\%  & 0.364594 & 24.130600 & 0.367240 & 40.457382  \\ \hline
+Max   & 0.369945 & 36.830929 & 0.396082 & 66.696275  \\ \hline
+\end{tabular}
+\caption{Table 1}
+\end{table}
+
+Both GCC and ExGCC were relatively stable during both months, while we still observed some minor fluctuations that lasted for days, for example, the decreases appear on about July 7th and 13th, which were due to rainy weather according to local weather records. In Feburary, the largest values appeared in the middle of the month and July 23rd.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/VIsmoothed.png}
+  \caption{Smoothed GCCs and ExGCCs}
+  \label{fig:fig6}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/FebmeanGCC.png}
+  \caption{Extracted GCC of mangroves in Feburary,2017 before and after three day mean smoothing.}
+   \includegraphics[width=1\textwidth]{pictures/JulymeanGCC_revised.png}
+   \caption{Extracted GCC of mangroves in July,2017 before and after three day mean smoothing.}
+  \label{fig:fig1}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/FebMeanExGCC.png}
+  \caption{Extracted ExGCC of mangroves in Feburary,2017 before and after three day mean smoothing.}
+   \includegraphics[width=1\textwidth]{pictures/JulyMeanExGCC_revised.png}
+   \caption{Extracted ExGCC of mangroves in July,2017 before and after three day mean smoothing.}
+  \label{fig:fig2}
+\end{figure}
+
+\subsection{Seasonal Difference}
+Since Feburary and July are representative months of winter and summer, respectively, we summarized the potential seasonal effect to mangroves by comparing these two months' statistics and trends.
+
+The mean value of the ExGCC increased from 19.62 in February to 34.63 in July, about 76.5\%,  indicating the growth of mangroves in Summer. However, we only observed an increase of about 2\%, for GCC, from Feburary to July.We applied the Two-sample t Test to check statistical significance of the difference between GCCs in these two months, with a alternative hypothesis that mean GCC in Feburary was greater than that in July.It turned out that the p-value of this test was about 0.302,signifying that there is no sufficient evidence to prove that the mean GCC in Feburary was different from that in July.Maybe it is due to relatively small values of this index.Also,July's ExGCC has higher standard deviations,for about 8.94, compared with 6.71 of that in Feburary, meaning that high temperatures and bigger day and night temperature difference made the values in July have larger values and standard deviations.
+
+When looking for trends from the graghs(\ref{fig:fig1}) of smoothed vegetation indices, we found that the mean GCC in July had risen from 0.3772 to 0.3895, different from the drop in Feburary, which started from 0.3472 to 0.3431.It means that GCCs and ExGCCs had quite positive relationships with the temeratures.The same trends can be displayed more significantly using ExGCCs.
+
+\begin{table}[]
+\begin{tabular}{lllll}
+Time                & NDVI     & meanNDVI & medianNDVI & qNDVI    \\
+2016-03-09 14:00:00 & 0.841172 & 0.829683 & 0.828016   & 0.857571 \\
+2016-03-09 14:30:00 & 0.859393 & 0.829683 & 0.828016   & 0.857571 \\
+2016-03-10 10:00:00 & 0.826450 & 0.837297 & 0.828016   & 0.857571 \\
+2016-03-10 10:30:00 & 0.815591 & 0.837297 & 0.828016   & 0.857571 \\
+2016-03-10 11:00:00 & 0.799066 & 0.837297 & 0.828016   & 0.857571
+\end{tabular}
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/julyfebqndvi qgcc.png}}
+  \centering
+  \includegraphics[width=0.4\textwidth]{pictures/qcor.png}
+  \caption{Correlation between qNDVI and qGCC in Feburary}
+  \centering
+  \includegraphics[width=0.4\textwidth]{pictures/qcorjuly.png}
+  \caption{Correlation between qNDVI and qGCC in July}
+  \label{fig:fig3}
+\end{figure}
+
+
+
+\subsection{Validation of the VIs extracted from Camera Photos}
+
+We validated the VIs extracted from VIs with in-situ NDVI measurements.Figure 13 and Figure \ref{fig:fig3} showed the relationship of qNDVI and qGCC of Feburary and July.We chose quantiles because they behaved most stable and were not affected by extreme values.The correlation coefficient between these two indices was about 0.252 in Feburary,indicating a positive relationship.
+
+July's correlation coefficient behaves more ideally than Feburary's, nearly 0.3505.These two months both presented positive correlations, demonstrating digital-camera method's effectiveness in predicting field vegetation indices.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/exppredict.png}
+  \centering
+  \includegraphics[width=1.2\textwidth]{pictures/exppred.png}
+  \caption{Prediction using exposure time}
+  \label{fig:fig8}
+\end{figure}
+
+\subsection{Validation results with exposure time}
+When scanning all the images for visible stains, we found that they had different exposure times, which might lead to relatively great or poor illumination conditions.We therefore extracted the exposure times from images' exif datas and compute their correlation  coefficients with GCCs and ExGCCs.Fortunately, we got quite high correlations, about 0.7(See Figure\ref{fig:fig8}), between exposure times and VIs in July, which mean we can use exposure times to improve the prediction performances of GCCs and ExGCCs.
+
+\section{Discussions} 
+\subsection{The Pros and Cons of using camera photos to monitor the growth of mangroves}
+Digital cameras can produce accurate datas if the VIs can be integrated with other techniques like eddy covariance datas(cite   ).After Comparing it with other methods like landsat datas, we found that we can detect the potential drawbacks of the clear digital images more swiftly and directly and correct them as soon as possible.Using digital images is also a economic research method that it can be used in other scientific cases and save a lot of money if the vegetation indices are representative for one type of environment.
+
+However, the restrictions of digital photos can directly influence the outcome of the research.The location of the cameras should be fixed for such a long time span that it is difficult to ensure the same field of view.
+According to our experiment, the VIs and GPP can be not so synchronous due to the change in the illumination condition, the hue of the images and the complexity of the region. 
+
+
+\subsection{Other Potential Factors that affect the reliability}
+\subsubsection{Illumination}
+We observed that the extracted VIs correlate significantly with the illumination conditions. The VIs increases with stronger incoming daylight and decreases with weaker daylight. The change caused by the difference in illumination conditions could even be more dramatic than that caused by the seasonal effects. In this paper, we adopted the method from XXX (2016) and only extracted VIs from images captured from 10am to 2pm when the daylight is relatively stable. Results show that this method helps control the effects of illumination change. 
+
+
+\subsubsection{Weather effects}
+On cloudy days, the gloomy weather largely weakened the illumination due to less incoming sun light.Moreover, the hues displayed on the images were shifted from bright colors to dim and dark ones.These resulted in consequences that some of the days generated extremely low VIs, which had no relationships with the conditions of the mangrove forests.The same situation can be applied to rainy days, which were usually accompanied with clouds.It was noteworthy that on rainy days, large  rain droplets may descent on the lens of the cameras.These stains were also potential causes of sudden decreases in VIs.
+
+
+\subsubsection{Different smoothing methods}
+The moving mean smoothing method generates similar reuslts compared with the moving median smoothing method, while the moving 90\% quantile smoothing method could minimize the fluctuations caused by weather changes and other potential factors.The moving mean smoothing method can be affected by extreme values, which appear relatively frequently in our research.The moving 90\% quantile smoothing method may be inaccurate because it only displays the pattern of datas with large values and so that ignores comparatively small ones.++++ 
+
+
+
+\subsection{Other Results for Reference}
+\subsubsection{Get Mean First vs. Our Method}
+
+
+
+\section{Conclusion}
+
+
+
+\bibliographystyle{unsrt}  
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{kour2014real}
+George Kour and Raid Saabne.
+\newblock Real-time segmentation of on-line handwritten arabic script.
+\newblock In {\em Frontiers in Handwriting Recognition (ICFHR), 2014 14th
+  International Conference on}, pages 417--422. IEEE, 2014.
+
+\bibitem{kour2014fast}
+George Kour and Raid Saabne.
+\newblock Fast classification of handwritten on-line arabic characters.
+\newblock In {\em Soft Computing and Pattern Recognition (SoCPaR), 2014 6th
+  International Conference of}, pages 312--318. IEEE, 2014.
+
+\bibitem{hadash2018estimate}
+Guy Hadash, Einat Kermany, Boaz Carmeli, Ofer Lavi, George Kour, and Alon
+  Jacovi.
+\newblock Estimate and replace: A novel approach to integrating deep neural
+  networks with existing applications.
+\newblock {\em arXiv preprint arXiv:1804.09028}, 2018.
+
+\end{thebibliography}
+
+
+\section{Lecture Notes}
+
+\subsection{May. 4th}
+1. [Completed] Compare the get mean first method with the method we used.
+
+We found a minor technical difference between  the extraction method of GCC proposed in existing literature and the method we are using. The difference is that in existing literature GCC was calculated using the averaged grey-level values in the Green, Blue and Red bands, while in our method, we calculate GCC for each pixel based on the RGB value for each pixel first and then average the GCC for each image.
+
+We compared extracted GCC for both methods. The GCC values calculated using our method is slightly larger with a very similar trend. We observed that the GCC extracted using our method has slightly larger variance. However, the advant   age of our method is that for each image we get a distribution of GCC. So it depends on the needs of follow-up studies on the technical procedures.  
+
++ Comparison Figure
+
+
+2. Next Steps
+
+2.1 Complete GCC extraction for Feb., 2017.
+Outs: 1 .pk file.  2. Curve - before and after smoothing
+
+2.2 Validate the results in Feb.
+
+2.3 Validation results with Exposure Time.  
+
+
+
+
+
+4. Available Time: AP Exams: May 6/14/15
+
+
+\end{document}
